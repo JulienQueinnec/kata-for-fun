@@ -18,4 +18,17 @@ class KataForFunServiceTest {
         Assertions.assertThat(actual).isEqualTo(expected);
     }
 
+    @Test
+    void should_return_2_given_input_is_2_as_not_divisible_by_3_or_5_and_not_contains_3_5_or_7() {
+        //Given
+        int input = 2;
+        String expected = "2";
+        KataForFunService kataForFunService  = new KataForFunService();
+        //When
+        String actual = kataForFunService.convert(input);
+
+        //Then
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
 }
