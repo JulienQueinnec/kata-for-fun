@@ -70,5 +70,18 @@ class KataForFunServiceTest {
         Assertions.assertThat(actual).isEqualTo(expected);
     }
 
+    @Test
+    void should_return_Fun_given_input_is_7_as_not_divisible_by_3_or_5_and_contains_7_but_3_or_5() {
+        //Given
+        int input = 7;
+        String expected = "Fun";
+        KataForFunService kataForFunService  = new KataForFunService();
+        //When
+        String actual = kataForFunService.convert(input);
+
+        //Then
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
 
 }
