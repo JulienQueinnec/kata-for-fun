@@ -17,5 +17,5 @@ class KataForFunServiceTest {
         //Then
         Assertions.assertThat(actual).isEqualTo(expected);
     }
-    
+
 }
