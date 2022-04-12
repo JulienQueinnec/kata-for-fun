@@ -114,7 +114,20 @@ class KataForFunServiceTest {
         //Given
         int input = 53;
         String expected = "ForKata";
-        KataForFunService kataForFunService  = new KataForFunService();
+        KataForFunService kataForFunService = new KataForFunService();
+        //When
+        String actual = kataForFunService.convert(input);
+
+        //Then
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void should_return_KataKataKata_given_input_is_33() {
+        //Given
+        int input = 33;
+        String expected = "KataKataKata";
+        KataForFunService kataForFunService = new KataForFunService();
         //When
         String actual = kataForFunService.convert(input);
 
