@@ -7,7 +7,8 @@ public class KataForFunService {
         sb.append(isDivisibleBy3Rule(input))
           .append(isDivisibleBy5Rule(input))
           .append(contains3Rule(input))
-          .append(contains5Rule(input));
+          .append(contains5Rule(input))
+          .append(contains7Rule(input));
 
         return checkIfDefaultRule(input, sb);
     }
@@ -44,6 +45,13 @@ public class KataForFunService {
     private String contains5Rule(int input) {
         if (("" + input).contains("5")) {
             return "For";
+        }
+        return "";
+    }
+
+    private String contains7Rule(int input) {
+        if (("" + input).contains("7")) {
+            return "Fun";
         }
         return "";
     }
