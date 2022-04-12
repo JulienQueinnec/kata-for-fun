@@ -47,7 +47,7 @@ class KataForFunServiceTest {
     @Test
     void should_return_ForFor_given_input_is_5_as_divisible_by_5_but_3_and_contains_5_but_7_or_5() {
         //Given
-        int input = 3;
+        int input = 5;
         String expected = "ForFor";
         KataForFunService kataForFunService  = new KataForFunService();
         //When

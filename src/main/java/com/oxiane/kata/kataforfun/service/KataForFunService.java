@@ -5,6 +5,9 @@ public class KataForFunService {
         if (input == 3) {
             return "KataKata";
         }
+        if (input == 5) {
+            return "ForFor";
+        }
         return ""+input;
     }
 }
