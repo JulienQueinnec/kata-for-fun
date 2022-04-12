@@ -32,7 +32,7 @@ class KataForFunServiceTest {
     }
 
     @Test
-    void should_return_KataKata_given_input_is_3_as_not_divisible_by_3_but_5_and_contains_3_but_5_or_7() {
+    void should_return_KataKata_given_input_is_3_as_divisible_by_3_but_5_and_contains_3_but_5_or_7() {
         //Given
         int input = 3;
         String expected = "KataKata";
