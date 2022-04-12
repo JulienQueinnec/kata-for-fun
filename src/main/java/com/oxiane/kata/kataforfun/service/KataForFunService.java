@@ -36,7 +36,6 @@ public class KataForFunService {
     private List<ContentStrat> getContentStrats(int input) {
         return ("" + input).chars()
                 .mapToObj(c -> (char) c)
-                .distinct()
                 .filter(c -> c == '3' || c == '5' || c == '7')
                 .map(ContentStrat::of)
                 .collect(Collectors.toList());
