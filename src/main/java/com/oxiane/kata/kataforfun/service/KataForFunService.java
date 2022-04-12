@@ -1,24 +1,49 @@
 package com.oxiane.kata.kataforfun.service;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class KataForFunService {
     public String convert(int input) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(isDivisibleBy3Rule(input))
-          .append(isDivisibleBy5Rule(input))
-          .append(contains3Rule(input))
-          .append(contains5Rule(input))
-          .append(contains7Rule(input));
+        String divisorResult = divisorsRules(input);
+        String contentResult = contentsRules(input);
 
-        return checkIfDefaultRule(input, sb);
+        if (checkIfDefaultRule(divisorResult, contentResult)) {
+            return defaultResult(input);
+        }
+        return divisorResult + contentResult;
     }
 
-    private String checkIfDefaultRule(int input, StringBuilder sb) {
-        if (sb.isEmpty()) {
-            return "" + input;
-        } else {
-            return sb.toString();
-        }
+    private boolean checkIfDefaultRule(String divisorResult, String contentResult) {
+        return divisorResult.isEmpty() && contentResult.isEmpty();
+    }
+
+    private String defaultResult(int input) {
+        return "" + input;
+    }
+
+    private String contentsRules(int input) {
+
+        return getContentStrats(input)
+                .stream()
+                .map(ContentStrat::getStratValue)
+                .collect(Collectors.joining());
+    }
+
+    private List<ContentStrat> getContentStrats(int input) {
+        return ("" + input).chars()
+                .mapToObj(c -> (char) c)
+                .distinct()
+                .filter(c -> c == '3' || c == '5' || c == '7')
+                .map(ContentStrat::of)
+                .collect(Collectors.toList());
+    }
+
+    private String divisorsRules(int input) {
+        return isDivisibleBy3Rule(input) + isDivisibleBy5Rule(input);
     }
 
     private String isDivisibleBy3Rule(int input) {
@@ -35,25 +60,29 @@ public class KataForFunService {
         return "";
     }
 
-    private String contains3Rule(int input) {
-        if (("" + input).contains("3")) {
-            return "Kata";
-        }
-        return "";
-    }
 
-    private String contains5Rule(int input) {
-        if (("" + input).contains("5")) {
-            return "For";
-        }
-        return "";
-    }
+    private enum ContentStrat {
+        KATA('3', "Kata"),
+        FOR('5', "For"),
+        FUN('7', "Fun");
 
-    private String contains7Rule(int input) {
-        if (("" + input).contains("7")) {
-            return "Fun";
-        }
-        return "";
-    }
+        private Character input;
+        private String stratValue;
 
+        ContentStrat(Character input, String stratValue) {
+            this.input = input;
+            this.stratValue = stratValue;
+        }
+
+        static ContentStrat of(Character input) {
+            return Arrays.stream(values())
+                    .filter(strat -> strat.input.equals(input))
+                    .findFirst()
+                    .orElseThrow();
+        }
+
+        public String getStratValue() {
+            return stratValue;
+        }
+    }
 }
