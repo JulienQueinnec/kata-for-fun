@@ -135,4 +135,30 @@ class KataForFunServiceTest {
         Assertions.assertThat(actual).isEqualTo(expected);
     }
 
+    @Test
+    void should_return_KataFun_given_input_is_27() {
+        //Given
+        int input = 27;
+        String expected = "KataFun";
+        KataForFunService kataForFunService = new KataForFunService();
+        //When
+        String actual = kataForFunService.convert(input);
+
+        //Then
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void should_return_KataForFor_given_input_is_15() {
+        //Given
+        int input = 15;
+        String expected = "KataForFor";
+        KataForFunService kataForFunService = new KataForFunService();
+        //When
+        String actual = kataForFunService.convert(input);
+
+        //Then
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
 }

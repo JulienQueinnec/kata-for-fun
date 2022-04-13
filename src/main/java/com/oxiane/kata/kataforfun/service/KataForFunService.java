@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 
 public class KataForFunService {
     public String convert(int input) {
-        StringBuilder sb = new StringBuilder();
-
         String divisorResult = divisorsRules(input);
         String contentResult = contentsRules(input);
 
@@ -36,7 +34,6 @@ public class KataForFunService {
     private List<ContentStrat> getContentStrats(int input) {
         return ("" + input).chars()
                 .mapToObj(c -> (char) c)
-                .filter(c -> c == '3' || c == '5' || c == '7')
                 .map(ContentStrat::of)
                 .collect(Collectors.toList());
     }
@@ -63,10 +60,11 @@ public class KataForFunService {
     private enum ContentStrat {
         KATA('3', "Kata"),
         FOR('5', "For"),
-        FUN('7', "Fun");
+        FUN('7', "Fun"),
+        DEFAULT(' ', "");
 
-        private Character input;
-        private String stratValue;
+        private final Character input;
+        private final String stratValue;
 
         ContentStrat(Character input, String stratValue) {
             this.input = input;
@@ -77,7 +75,7 @@ public class KataForFunService {
             return Arrays.stream(values())
                     .filter(strat -> strat.input.equals(input))
                     .findFirst()
-                    .orElseThrow();
+                    .orElse(DEFAULT);
         }
 
         public String getStratValue() {
